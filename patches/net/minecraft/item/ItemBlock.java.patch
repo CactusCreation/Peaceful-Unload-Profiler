@@ -1,6 +1,23 @@
 --- ../src-base/minecraft/net/minecraft/item/ItemBlock.java
 +++ ../src-work/minecraft/net/minecraft/item/ItemBlock.java
-@@ -20,6 +20,9 @@
+@@ -1,6 +1,8 @@
+ package net.minecraft.item;
+ 
+ import javax.annotation.Nullable;
++
++import carpet.helpers.PeacefulProfilingManager;
+ import net.minecraft.advancements.CriteriaTriggers;
+ import net.minecraft.block.Block;
+ import net.minecraft.block.SoundType;
+@@ -9,6 +11,7 @@
+ import net.minecraft.entity.Entity;
+ import net.minecraft.entity.player.EntityPlayer;
+ import net.minecraft.entity.player.EntityPlayerMP;
++import net.minecraft.init.Blocks;
+ import net.minecraft.nbt.NBTTagCompound;
+ import net.minecraft.server.MinecraftServer;
+ import net.minecraft.tileentity.TileEntity;
+@@ -20,6 +23,9 @@
  import net.minecraft.util.math.BlockPos;
  import net.minecraft.world.World;
  
@@ -10,7 +27,7 @@
  public class ItemBlock extends Item
  {
      protected final Block field_150939_a;
-@@ -44,8 +47,21 @@
+@@ -44,8 +50,25 @@
          if (!itemstack.func_190926_b() && p_180614_1_.func_175151_a(p_180614_3_, p_180614_5_, itemstack) && p_180614_2_.func_190527_a(this.field_150939_a, p_180614_3_, false, p_180614_5_, (Entity)null))
          {
              int i = this.func_77647_b(itemstack.func_77960_j());
@@ -30,10 +47,14 @@
 +            //END CM
 +
 +            if(CarpetSettings.duplicationFixUpdateSuppression) itemstack.func_190918_g(1); // Fix for duping when update suppressing. CARPET-XCOM
++            if (this.field_150939_a == Blocks.field_150399_cn)
++            {
++                PeacefulProfilingManager.beginTrace(p_180614_1_, p_180614_2_, p_180614_3_);
++            }
              if (p_180614_2_.func_180501_a(p_180614_3_, iblockstate1, 11))
              {
                  iblockstate1 = p_180614_2_.func_180495_p(p_180614_3_);
-@@ -63,7 +79,9 @@
+@@ -63,7 +86,9 @@
  
                  SoundType soundtype = this.field_150939_a.func_185467_w();
                  p_180614_2_.func_184133_a(p_180614_1_, p_180614_3_, soundtype.func_185841_e(), SoundCategory.BLOCKS, (soundtype.func_185843_a() + 1.0F) / 2.0F, soundtype.func_185847_b() * 0.8F);

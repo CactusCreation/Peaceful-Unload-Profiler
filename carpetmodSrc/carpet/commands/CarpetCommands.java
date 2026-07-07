@@ -27,6 +27,7 @@ public class CarpetCommands {
         handler.registerCommand(new CommandFeel());
         handler.registerCommand(new CommandFill13());
         handler.registerCommand(new CommandFillBiome());
+        handler.registerCommand(new CommandGetProfileById());
         handler.registerCommand(new CommandGMC());
         handler.registerCommand(new CommandGMS());
         handler.registerCommand(new CommandGrow());
@@ -34,6 +35,7 @@ public class CarpetCommands {
         handler.registerCommand(new CommandLagSpike());
         handler.registerCommand(new CommandLazyChunkBehavior());
         handler.registerCommand(new CommandLight());
+        handler.registerCommand(new CommandListProfiles());
         handler.registerCommand(new CommandLoadedChunks());
         handler.registerCommand(new CommandLog());
         handler.registerCommand(new CommandPalette());
@@ -46,6 +48,7 @@ public class CarpetCommands {
         handler.registerCommand(new CommandRNG());
         handler.registerCommand(new CommandScoreboardPublic());
         handler.registerCommand(new CommandSetBlock13());
+        handler.registerCommand(new CommandSetUnloadChunk());
         handler.registerCommand(new CommandSpawn());
         handler.registerCommand(new CommandStructure());
         handler.registerCommand(new CommandSubscribe());
