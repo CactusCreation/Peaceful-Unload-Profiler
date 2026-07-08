@@ -142,16 +142,16 @@ public class ProfileEntry
         sb.append('\n');
 
         if (playerPhaseEnd != -1)
-            sb.append(String.format("Player Phase: %f", (getPlayerPhaseNs())));
+            sb.append(String.format("Player Phase: %d", (getPlayerPhaseNs())));
 
         if (mobSpawnEnd != -1)
-            sb.append(String.format("Mob Spawn: %f", (getMobSpawnNs())));
+            sb.append(String.format("Mob Spawn: %d", (getMobSpawnNs())));
 
         if (chunkUnloadEnd != -1)
-            sb.append(String.format("Chunk Unload: %f", (getChunkUnloadNs())));
+            sb.append(String.format("Chunk Unload: %d", (getChunkUnloadNs())));
 
         if (beaconThreadEnd != -1)
-            sb.append(String.format("Beacon Thread: %f", getBeaconLifetimeNs()));
+            sb.append(String.format("Beacon Thread: %d", getBeaconLifetimeNs()));
 
         sb.append("You suck or the thread didn't live long enough: ").append((getPlayerPhaseNs() + getMobSpawnNs() + getChunkUnloadNs() > getBeaconLifetimeNs()));
 
