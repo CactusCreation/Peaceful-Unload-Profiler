@@ -45,7 +45,6 @@ public class PeacefulProfilingManager {
 
             System.out.println("Finishing profile #" + activeEntry.getId());
 
-            activeEntry.finish();
             entries.put(activeEntry.getId(), activeEntry);
 
             activeEntry = null;

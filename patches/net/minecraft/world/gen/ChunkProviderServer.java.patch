@@ -167,17 +167,17 @@
 -
 -                    if (chunk != null && chunk.field_189550_d)
 +                    ProfileEntry entry = PeacefulProfilingManager.getActive();
-+                    boolean profile = (entry != null && chunk.func_76632_l().equals(PeacefulProfilingManager.unloadChunk));                    if (chunk != null /*&& chunk.unloadQueued*/) // CM: moved check below
++                    boolean profile = (chunk.func_76632_l().equals(PeacefulProfilingManager.unloadChunk));                    if (chunk != null /*&& chunk.unloadQueued*/) // CM: moved check below
                      {
 +                        if (chunk.field_189550_d) {
-+                            if (profile) {
++                            if (profile && entry != null) {
 +                                entry.chunkUnloadStarted();
 +                            }
                          chunk.func_76623_d();
                          this.func_73242_b(chunk);
                          this.func_73243_a(chunk);
                          this.field_73244_f.remove(olong);
-+                            if (profile) {
++                            if (profile && entry != null) {
 +                                entry.chunkUnloadFinished();
 +                                if (entry.isComplete())
 +                                {

@@ -18,8 +18,6 @@ public class ProfileEntry
     public volatile long beaconThreadStart = -1;
     public volatile long beaconThreadEnd = -1;
 
-    private boolean complete = false;
-
     public ProfileEntry(int id, String player, int dimension, BlockPos triggerPos)
     {
         this.id = id;
@@ -73,11 +71,6 @@ public class ProfileEntry
 
     }
 
-    public void finish()
-    {
-        complete = true;
-    }
-
 
     public int getId()
     {
@@ -94,10 +87,6 @@ public class ProfileEntry
         return dimension;
     }
 
-    public BlockPos getTriggerPos()
-    {
-        return triggerPos;
-    }
 
     public boolean isComplete()
     {
@@ -142,21 +131,20 @@ public class ProfileEntry
         sb.append('\n');
 
         if (playerPhaseEnd != -1)
-            sb.append(String.format("Player Phase: %d", (getPlayerPhaseNs())));
+            sb.append(String.format("Player Phase: %d%n", (getPlayerPhaseNs())));
 
         if (mobSpawnEnd != -1)
-            sb.append(String.format("Mob Spawn: %d", (getMobSpawnNs())));
+            sb.append(String.format("Mob Spawn: %d%n", (getMobSpawnNs())));
 
         if (chunkUnloadEnd != -1)
-            sb.append(String.format("Chunk Unload: %d", (getChunkUnloadNs())));
+            sb.append(String.format("Chunk Unload: %d%n", (getChunkUnloadNs())));
 
         if (beaconThreadEnd != -1)
-            sb.append(String.format("Beacon Thread: %d", getBeaconLifetimeNs()));
+            sb.append(String.format("Beacon Thread: %d%n", getBeaconLifetimeNs()));
 
         sb.append("You suck or the thread didn't live long enough: ").append((getPlayerPhaseNs() + getMobSpawnNs() + getChunkUnloadNs() > getBeaconLifetimeNs()));
 
 
-        sb.append("Complete: ").append(complete);
 
         return sb.toString();
     }
