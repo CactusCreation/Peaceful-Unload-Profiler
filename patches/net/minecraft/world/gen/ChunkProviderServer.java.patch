@@ -147,7 +147,7 @@
          int i = 0;
          List<Chunk> list = Lists.newArrayList(this.field_73244_f.values());
  
-@@ -222,25 +272,71 @@
+@@ -222,25 +272,81 @@
      {
          if (!this.field_73251_h.field_73058_d)
          {
@@ -197,6 +197,9 @@
 +                                    || field_73251_h.func_175661_b(Entity.class, player -> player.field_70176_ah == chunk.field_76635_g && player.field_70164_aj == chunk.field_76647_h).isEmpty()) {
 +                                // Getting the chunk size is incredibly inefficient, but it's better than unloading and reloading the chunk
 +                                if ((UnloadOrder.getSavedChunkSize(chunk) + 5) / 4096 + 1 >= 256) {
++                                    if (profile && entry != null) {
++                                        entry.chunkUnloadStarted();
++                                    }
 +                                    chunk.func_76623_d();
 +                                    //this.saveChunkData(chunk); no point saving the chunk data, we know that won't work
 +                                    this.func_73243_a(chunk);
@@ -211,6 +214,13 @@
 +                                        pcmEntry.field_187290_j = false;
 +                                        pcmEntry.func_187272_b();
 +                                    }
++                                    if (profile && entry != null) {
++                                        entry.chunkUnloadFinished();
++                                        if (entry.isComplete())
++                                        {
++                                            PeacefulProfilingManager.finishTrace();
++                                        }
++                                    }
 +                                }
 +                            }
 +                        }
@@ -222,7 +232,7 @@
  
              this.field_73247_e.func_75817_a();
          }
-@@ -283,9 +379,17 @@
+@@ -283,9 +389,17 @@
      {
          return this.field_73244_f.containsKey(ChunkPos.func_77272_a(p_73149_1_, p_73149_2_));
      }
